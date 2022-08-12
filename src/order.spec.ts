@@ -29,4 +29,12 @@ describe('Order unit test', () => {
 
     expect(order.total()).toBe(1450);
   });
+
+  test('should throw error if quantity lower than or equal zero', () => {
+    expect(() => {
+      const items = [new OrderItem('1', 'item 1', 1, 'product_1', 0)];
+
+      new Order('1', '', items);
+    }).toThrowError('Quantity must be greater than zero');
+  });
 });
