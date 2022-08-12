@@ -10,13 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Account {
-  id        String    @id @default(uuid())
-  firstName String
-  lastName  String
-  email     String    @unique
-  password  String
-  createdAt DateTime  @default(now())
-  editedAt  DateTime?
-  removeAt  DateTime?
+model Product {
+  id    String  @id @default(uuid())
+  name  String
+  price Decimal @db.Decimal(18, 2)
 }
