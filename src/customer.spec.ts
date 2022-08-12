@@ -23,6 +23,14 @@ describe('Customer unit test', () => {
     expect(customer.name).toBe(name);
   });
 
+  test('should throw error when activate without address', () => {
+    const customer = new Customer('1', 'Jane');
+
+    expect(() => {
+      customer.activate();
+    }).toThrowError();
+  });
+
   test('should activate customer', () => {
     const customer = new Customer('1', 'Jane');
     customer.changeAddress('Street 1', 123, '80020-999', 'São Paulo');
