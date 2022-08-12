@@ -41,4 +41,8 @@ export class Customer {
   public deactivate() {
     this._active = false;
   }
+
+  public changeName(name: string) {
+    this._name = name;
+  }
 }
