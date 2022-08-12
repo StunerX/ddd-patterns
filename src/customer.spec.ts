@@ -12,4 +12,14 @@ describe('Customer unit test', () => {
       new Customer('1', '');
     }).toThrowError('Name is required');
   });
+
+  test('should change name', () => {
+    const name = 'Jane';
+
+    const customer = new Customer('1', 'Bane');
+
+    customer.changeName(name);
+
+    expect(customer.name).toBe(name);
+  });
 });
