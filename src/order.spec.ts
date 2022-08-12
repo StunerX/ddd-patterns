@@ -21,4 +21,12 @@ describe('Order unit test', () => {
       new Order('1', '1', []);
     }).toThrowError('Items is required');
   });
+
+  test('should calculate total', () => {
+    const item1 = new OrderItem('1', 100);
+    const item2 = new OrderItem('2', 150);
+    const order = new Order('1', '1', [item1, item2]);
+
+    expect(order.total()).toBe(250);
+  });
 });
