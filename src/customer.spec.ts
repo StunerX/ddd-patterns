@@ -31,4 +31,12 @@ describe('Customer unit test', () => {
 
     expect(customer.active).toBe(true);
   });
+
+  test('should deactivate customer', () => {
+    const customer = new Customer('1', 'Jane');
+
+    customer.deactivate();
+
+    expect(customer.active).toBe(false);
+  });
 });
