@@ -35,6 +35,7 @@ export class Customer {
   }
 
   public activate() {
+    if (!this._address) throw new Error('Address is missing');
     this._active = true;
   }
 
@@ -44,5 +45,9 @@ export class Customer {
 
   public changeName(name: string) {
     this._name = name;
+  }
+
+  public changeAddress(street: string, number: number, zipCode: string, city: string) {
+    this._address = new Address(street, number, zipCode, city);
   }
 }
