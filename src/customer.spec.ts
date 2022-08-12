@@ -22,4 +22,13 @@ describe('Customer unit test', () => {
 
     expect(customer.name).toBe(name);
   });
+
+  test('should activate customer', () => {
+    const customer = new Customer('1', 'Jane');
+    customer.changeAddress('Street 1', 123, '80020-999', 'São Paulo');
+
+    customer.activate();
+
+    expect(customer.active).toBe(true);
+  });
 });
