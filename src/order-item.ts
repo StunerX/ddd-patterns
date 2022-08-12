@@ -5,9 +5,15 @@ export class OrderItem {
     private price: number,
     private productId: string,
     private quantity: number
-  ) {}
+  ) {
+    this.validate();
+  }
 
   public getPrice(): number {
     return this.price * this.quantity;
+  }
+
+  private validate(): void {
+    if (this.quantity <= 0) throw new Error('Quantity must be greater than zero');
   }
 }
