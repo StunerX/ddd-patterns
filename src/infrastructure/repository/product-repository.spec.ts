@@ -49,4 +49,48 @@ describe('Product Repository Test', () => {
     const editedProduct = await productRepository.find(id);
     expect(editedProduct).toStrictEqual(product);
   });
+
+  test('should find product by id', async () => {
+    const productRepository = new ProductRepository();
+
+    prismaMock.product.findFirst.mockResolvedValue({
+      id: '#1',
+      name: 'product one',
+      price: new Prisma.Decimal(125)
+    });
+
+    const product = await productRepository.find('#1');
+
+    expect(product).toEqual({
+      id: '#1',
+      name: 'product one',
+      price: 125
+    });
+  });
+
+  test('should find all products', async () => {
+    const productRepository = new ProductRepository();
+
+    prismaMock.product.findMany.mockResolvedValue([
+      {
+        id: '#1',
+        name: 'product one',
+        price: new Prisma.Decimal(125)
+      },
+      {
+        id: '#2',
+        name: 'product two',
+        price: new Prisma.Decimal(220)
+      }
+    ]);
+
+    const products = await productRepository.findAll();
+
+    const productOne = new Product('#1', 'product one', 125);
+    const productTwo = new Product('#2', 'product two', 220);
+
+    expect(products?.length).toBe(2);
+    expect(products).toContainEqual(productOne);
+    expect(products).toContainEqual(productTwo);
+  });
 });
