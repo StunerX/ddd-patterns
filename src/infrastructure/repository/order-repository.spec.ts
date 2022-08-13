@@ -1,4 +1,4 @@
-import { prisma, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { Order } from '@src/domain/entity/order';
 import { OrderItem } from '@src/domain/entity/order-item';
 import { prismaMock } from '../db/prisma/singleton';
