@@ -58,4 +58,20 @@ describe('Test find customer use case', () => {
 
     expect(result).toStrictEqual(output);
   });
+
+  test('should throws if customer repository throws', () => {
+    const { customerRepositoryStub, findCustomerUseCase } = makeSut();
+
+    jest.spyOn(customerRepositoryStub, 'find').mockImplementationOnce(() => {
+      throw new Error('Customer not found');
+    });
+
+    const input = {
+      id: '#1'
+    };
+
+    const result = findCustomerUseCase.execute(input);
+
+    expect(result).rejects.toThrowError();
+  });
 });
