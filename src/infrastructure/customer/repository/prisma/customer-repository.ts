@@ -1,6 +1,6 @@
-import { Customer } from '@src/domain/entity/customer';
-import { CustomerRepositoryInterface } from '@src/domain/repository/customer-repository-interface';
-import prisma from '../db/prisma/client';
+import { Customer } from '@src/domain/customer/entity/customer';
+import { CustomerRepositoryInterface } from '@src/domain/customer/repository/customer-repository-interface';
+import prisma from '@src/infrastructure/db/prisma/client';
 
 export class CustomerRepository implements CustomerRepositoryInterface {
   async create(entity: Customer): Promise<{ createdId: string }> {

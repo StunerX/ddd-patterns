@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
-import { Product } from '@src/domain/entity/product';
-import { prismaMock } from '../db/prisma/singleton';
+import { Product } from '@src/domain/product/entity/product';
+import { prismaMock } from '@src/infrastructure/db/prisma/singleton';
+
 import { ProductRepository } from './product-repository';
 
 describe('Product Repository Test', () => {

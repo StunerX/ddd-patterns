@@ -1,5 +1,5 @@
-import { Customer } from '@src/domain/entity/customer';
-import { prismaMock } from '../db/prisma/singleton';
+import { Customer } from '@src/domain/customer/entity/customer';
+import { prismaMock } from '@src/infrastructure/db/prisma/singleton';
 import { CustomerRepository } from './customer-repository';
 
 describe('Customer Repository Test', () => {

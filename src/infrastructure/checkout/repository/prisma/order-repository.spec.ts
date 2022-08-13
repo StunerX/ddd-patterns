@@ -1,7 +1,8 @@
 import { Prisma } from '@prisma/client';
-import { Order } from '@src/domain/entity/order';
-import { OrderItem } from '@src/domain/entity/order-item';
-import { prismaMock } from '../db/prisma/singleton';
+import { Order } from '@src/domain/checkout/entity/order';
+import { OrderItem } from '@src/domain/checkout/entity/order-item';
+import { prismaMock } from '@src/infrastructure/db/prisma/singleton';
+
 import { OrderRepository } from './order-repository';
 
 describe('Customer Repository Test', () => {

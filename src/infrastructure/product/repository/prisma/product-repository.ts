@@ -1,6 +1,6 @@
-import { Product } from '@src/domain/entity/product';
-import { ProductRepositoryInterface } from '@src/domain/repository/product-repository-interface';
-import prisma from '../db/prisma/client';
+import { Product } from '@src/domain/product/entity/product';
+import { ProductRepositoryInterface } from '@src/domain/product/repository/product-repository-interface';
+import prisma from '@src/infrastructure/db/prisma/client';
 
 export class ProductRepository implements ProductRepositoryInterface {
   async create(entity: Product): Promise<{ createdId: string }> {
