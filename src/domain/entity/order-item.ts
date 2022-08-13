@@ -9,8 +9,20 @@ export class OrderItem {
     this.validate();
   }
 
+  public getName(): string {
+    return this.name;
+  }
+
+  public getProductId(): string {
+    return this.productId;
+  }
+
   public getPrice(): number {
     return this.price * this.quantity;
+  }
+
+  public getQuantity(): number {
+    return this.quantity;
   }
 
   private validate(): void {

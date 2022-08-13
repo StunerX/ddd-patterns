@@ -11,9 +11,10 @@ datasource db {
 }
 
 model Product {
-  id    String  @id @default(uuid())
-  name  String
-  price Decimal @db.Decimal(18, 2)
+  id        String      @id @default(uuid())
+  name      String
+  price     Decimal     @db.Decimal(18, 2)
+  OrderItem OrderItem[]
 }
 
 model Customer {
@@ -25,4 +26,24 @@ model Customer {
   city         String
   active       Boolean
   rewardPoints Float
+  Order        Order[]
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  customer   Customer    @relation(fields: [customerId], references: [id])
+  customerId String
+  total      Decimal     @db.Decimal(18, 2)
+  OrderItem  OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+  quantity  Int
+  name      String
+  price     Decimal @db.Decimal(18, 2)
 }
