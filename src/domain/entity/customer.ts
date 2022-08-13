@@ -27,8 +27,8 @@ export class Customer {
     return this._name;
   }
 
-  public get address(): string {
-    return this._address.toString();
+  public get address(): Address {
+    return this._address;
   }
 
   public get active(): boolean {

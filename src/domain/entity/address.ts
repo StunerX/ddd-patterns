@@ -18,6 +18,22 @@ export class Address {
     if (!this.city) throw new Error('City is required');
   }
 
+  public getStreet(): string {
+    return this.street;
+  }
+
+  public getNumber(): number {
+    return this.number;
+  }
+
+  public getZipCode(): string {
+    return this.zipCode;
+  }
+
+  public getCity(): string {
+    return this.city;
+  }
+
   public toString() {
     return `${this.street}, ${this.number}, ${this.zipCode}, ${this.city}`;
   }
