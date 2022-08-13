@@ -9,6 +9,10 @@ export class Product {
     if (this.price <= 0) throw new Error('Price is required');
   }
 
+  public getId(): string {
+    return this.id;
+  }
+
   public getName(): string {
     return this.name;
   }

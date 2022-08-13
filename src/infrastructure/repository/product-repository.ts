@@ -5,20 +5,41 @@ import prisma from '../db/prisma/client';
 export class ProductRepository implements ProductRepositoryInterface {
   async create(entity: Product): Promise<{ createdId: string }> {
     const product = await prisma.product.create({
-      data: entity
+      data: {
+        id: entity.getId(),
+        name: entity.getName(),
+        price: entity.getPrice()
+      }
     });
 
     return {
       createdId: product.id
     };
   }
-  find(id: string): Promise<Product> {
+  async find(id: string): Promise<Product | null> {
+    const product = await prisma.product.findFirst({
+      where: { id }
+    });
+
+    if (!product?.id) return null;
+
+    return new Product(product.id, product.name, product.price.toNumber());
+  }
+  findAll(): Promise<Product[] | null> {
     throw new Error('Method not implemented.');
   }
-  findAll(): Promise<Product[]> {
-    throw new Error('Method not implemented.');
-  }
-  update(entity: Product): Promise<{ createdId: string }> {
-    throw new Error('Method not implemented.');
+  async update(entity: Product): Promise<{ id: string }> {
+    const product = await prisma.product.update({
+      where: { id: entity.getId() },
+      data: {
+        id: entity.getId(),
+        name: entity.getName(),
+        price: entity.getPrice()
+      }
+    });
+
+    return {
+      id: product.id
+    };
   }
 }

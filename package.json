@@ -9,7 +9,8 @@
     "test:staged": "yarn test -o",
     "test:integration": "yarn test --watch -c jest-integration-config.js",
     "test:ci": "yarn test --coverage",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prisma:migrate": "prisma migrate dev --schema=./src/infrastructure/db/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
