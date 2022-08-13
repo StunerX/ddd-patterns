@@ -29,8 +29,8 @@ const makeSut = () => {
   };
 };
 
-describe('Test create customer use case', () => {
-  test('should create a customer', async () => {
+describe('Test create product use case', () => {
+  test('should create a product', async () => {
     const { productRepositoryStub, createProductUseCase } = makeSut();
 
     jest.spyOn(productRepositoryStub, 'create').mockImplementationOnce(async () => {
@@ -38,7 +38,7 @@ describe('Test create customer use case', () => {
     });
 
     const input = {
-      name: 'customer 1',
+      name: 'product 1',
       price: 10
     };
 
@@ -55,7 +55,7 @@ describe('Test create customer use case', () => {
     const { createProductUseCase } = makeSut();
 
     const input = {
-      name: 'customer 1',
+      name: 'product 1',
       price: 10
     };
 

@@ -34,8 +34,8 @@ describe('Test list product use case', () => {
     const { listProductUseCase, productRepositoryStub } = makeSut();
 
     jest.spyOn(productRepositoryStub, 'findAll').mockImplementationOnce(async () => {
-      const productOne = new Product('#1', 'customer 1', 10);
-      const productTwo = new Product('#2', 'customer 2', 20);
+      const productOne = new Product('#1', 'product 1', 10);
+      const productTwo = new Product('#2', 'product 2', 20);
 
       return [productOne, productTwo];
     });
@@ -44,12 +44,12 @@ describe('Test list product use case', () => {
       products: [
         {
           id: '#1',
-          name: 'customer 1',
+          name: 'product 1',
           price: 10
         },
         {
           id: '#2',
-          name: 'customer 2',
+          name: 'product 2',
           price: 20
         }
       ]
