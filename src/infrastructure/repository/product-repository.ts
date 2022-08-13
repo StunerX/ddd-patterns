@@ -25,8 +25,10 @@ export class ProductRepository implements ProductRepositoryInterface {
 
     return new Product(product.id, product.name, product.price.toNumber());
   }
-  findAll(): Promise<Product[] | null> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<Product[] | null> {
+    const products = await prisma.product.findMany({});
+
+    return products.map((p) => new Product(p.id, p.name, p.price.toNumber()));
   }
   async update(entity: Product): Promise<{ id: string }> {
     const product = await prisma.product.update({
