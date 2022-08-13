@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Customer } from '@src/domain/customer/entity/customer';
 import { CustomerRepositoryInterface } from '@src/domain/customer/repository/customer-repository-interface';
-import { CustomerRepository } from '@src/infrastructure/customer/repository/prisma/customer-repository';
 import { CreateCustomerUseCase } from './create-customer';
 
 const makeSut = () => {
@@ -56,19 +55,21 @@ describe('Test find customer use case', () => {
     expect(result).toStrictEqual(output);
   });
 
-  // test('should throws if customer repository throws', () => {
-  //   const { customerRepositoryStub, findCustomerUseCase } = makeSut();
+  test('should throws if validate throws', () => {
+    const { createCustomerUseCase } = makeSut();
 
-  //   jest.spyOn(customerRepositoryStub, 'find').mockImplementationOnce(() => {
-  //     throw new Error('Customer not found');
-  //   });
+    const input = {
+      name: '',
+      address: {
+        street: 'street 1',
+        number: 222,
+        zipCode: '13222-221',
+        city: 'Curitiba'
+      }
+    };
 
-  //   const input = {
-  //     id: '#1'
-  //   };
+    const result = createCustomerUseCase.execute(input);
 
-  //   const result = findCustomerUseCase.execute(input);
-
-  //   expect(result).rejects.toThrowError();
-  // });
+    expect(result).rejects.toThrowError();
+  });
 });
