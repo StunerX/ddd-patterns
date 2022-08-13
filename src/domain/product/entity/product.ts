@@ -1,4 +1,6 @@
-export class Product {
+import { ProductInterface } from './product-interface';
+
+export class Product implements ProductInterface {
   constructor(private readonly id: string, private name: string, private price: number) {
     this.validate();
   }
