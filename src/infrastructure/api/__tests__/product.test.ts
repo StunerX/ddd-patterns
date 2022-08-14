@@ -3,7 +3,7 @@ import { prismaMock } from '@src/infrastructure/db/prisma/singleton';
 import request from 'supertest';
 import { app } from '../express';
 
-describe('E2E test for product', () => {
+describe('E2E Test for product', () => {
   test('should create a product', async () => {
     prismaMock.product.create.mockResolvedValue({
       id: 'any_id',
