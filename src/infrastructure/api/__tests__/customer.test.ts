@@ -32,4 +32,31 @@ describe('E2E test for customer', () => {
       id: 'any_id'
     });
   });
+
+  test('should return 500 if customer is invalid', async () => {
+    prismaMock.customer.create.mockResolvedValue({
+      id: 'any_id',
+      name: 'any_name',
+      street: 'any_street',
+      number: 1,
+      zipCode: 'any_zipCode',
+      city: 'any_city',
+      active: true,
+      rewardPoints: 0
+    });
+
+    const response = await request(app)
+      .post('/customer')
+      .send({
+        name: '',
+        address: {
+          street: 'any_street',
+          number: 1,
+          zipCode: 'any_zipCode',
+          city: 'any_city'
+        }
+      });
+
+    expect(response.status).toBe(500);
+  });
 });
