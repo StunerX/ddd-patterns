@@ -59,4 +59,47 @@ describe('E2E test for customer', () => {
 
     expect(response.status).toBe(500);
   });
+
+  test('should return all customers', async () => {
+    prismaMock.customer.findMany.mockResolvedValue([
+      {
+        id: '#1',
+        name: 'customer 1',
+        street: 'street 1',
+        number: 222,
+        zipCode: '13222-221',
+        city: 'Curitiba',
+        active: true,
+        rewardPoints: 0
+      },
+      {
+        id: '#2',
+        name: 'customer 2',
+        street: 'street 2',
+        number: 333,
+        zipCode: '13222-221',
+        city: 'São Paulo',
+        active: true,
+        rewardPoints: 0
+      }
+    ]);
+
+    const response = await request(app).get('/customer').send();
+
+    expect(response.status).toBe(200);
+    expect(response.body).toStrictEqual({
+      customers: [
+        {
+          address: { city: 'Curitiba', number: 222, street: 'street 1', zipCode: '13222-221' },
+          id: '#1',
+          name: 'customer 1'
+        },
+        {
+          address: { city: 'São Paulo', number: 333, street: 'street 2', zipCode: '13222-221' },
+          id: '#2',
+          name: 'customer 2'
+        }
+      ]
+    });
+  });
 });
