@@ -6,7 +6,6 @@ export class CreateProductUseCase {
   constructor(private readonly productRepository: ProductRepositoryInterface) {}
   async execute(input: InputCreateProductDto): Promise<OutputCreateProductDto> {
     const product = ProductFactory.new(input.name, input.price);
-    console.log('product factory called ', product);
 
     const result = await this.productRepository.create(product);
 
