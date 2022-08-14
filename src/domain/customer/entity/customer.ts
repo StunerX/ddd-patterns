@@ -8,9 +8,8 @@ export class Customer extends Entity {
   private _active: boolean;
   private _rewardPoints = 0;
 
-  constructor(id: string, name: string) {
-    super();
-    this._id = id;
+  constructor(public readonly id: string, name: string) {
+    super(id);
     this._name = name;
     this.validate();
 
@@ -20,7 +19,7 @@ export class Customer extends Entity {
   }
 
   public validate() {
-    if (!this._id)
+    if (!this.id)
       this.notification.addError({
         message: 'Id is required',
         context: 'customer'
@@ -31,10 +30,6 @@ export class Customer extends Entity {
         message: 'Name is required',
         context: 'customer'
       });
-  }
-
-  public get id(): string {
-    return this._id;
   }
 
   public get name(): string {
