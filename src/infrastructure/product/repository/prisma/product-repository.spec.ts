@@ -54,6 +54,8 @@ describe('Product Repository Test', () => {
   test('should find product by id', async () => {
     const productRepository = new ProductRepository();
 
+    const productMock = new Product('#1', 'product one', 125);
+
     prismaMock.product.findFirst.mockResolvedValue({
       id: '#1',
       name: 'product one',
@@ -62,11 +64,7 @@ describe('Product Repository Test', () => {
 
     const product = await productRepository.find('#1');
 
-    expect(product).toEqual({
-      id: '#1',
-      name: 'product one',
-      price: 125
-    });
+    expect(product).toStrictEqual(productMock);
   });
 
   test('should find all products', async () => {
