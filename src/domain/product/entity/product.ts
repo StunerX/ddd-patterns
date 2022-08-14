@@ -1,5 +1,6 @@
 import { Entity } from '@src/domain/shared/entity/entity.abstract';
 import { NotificationError } from '@src/domain/shared/notification/notification.error';
+import { ProductValidatorFactory } from '../factory/product-validator-factory';
 
 export class Product extends Entity {
   constructor(public override readonly id: string, private name: string, private price: number) {
@@ -11,21 +12,7 @@ export class Product extends Entity {
   }
 
   private validate() {
-    if (!this.id)
-      this.notification.addError({
-        message: 'Id is required',
-        context: 'product'
-      });
-    if (!this.name)
-      this.notification.addError({
-        message: 'Name is required',
-        context: 'product'
-      });
-    if (this.price <= 0)
-      this.notification.addError({
-        message: 'Price is required',
-        context: 'product'
-      });
+    ProductValidatorFactory.create().validate(this);
   }
 
   public getId(): string {
